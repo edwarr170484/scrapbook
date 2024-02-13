@@ -1,0 +1,18 @@
+{
+  "name": "edgar/scrapbook",
+  "description": "Test project in PHP, scrapbook",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "Edgar\\Scrapbook\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Edgar Zhiznevski",
+      "email": "edgarz@advansys.com"
+    }
+  ],
+  "minimum-stability": "beta",
+  "require": {}
+}
