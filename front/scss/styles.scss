@@ -1,23 +1,6 @@
 /* Bootstrap part start */
 // Required
-@import "../../node_modules/bootstrap/scss/functions";
-
-// Default variable overrides
-$grid-gutter-width: 30px;
-
-// Required
-@import "../../node_modules/bootstrap/scss/variables";
-@import "../../node_modules/bootstrap/scss/variables-dark";
-@import "../../node_modules/bootstrap/scss/maps";
-@import "../../node_modules/bootstrap/scss/mixins";
-@import "../../node_modules/bootstrap/scss/root";
-
-//Optional
-@import "../../node_modules/bootstrap/scss/containers";
-@import "../../node_modules/bootstrap/scss/grid";
-@import "../../node_modules/bootstrap/scss/carousel";
-@import "../../node_modules/bootstrap/scss/modal";
-@import "../../node_modules/bootstrap/scss/forms/form-control";
+@import "../../node_modules/bootstrap/scss/bootstrap.scss";
 /* Bootstrap part end */
 
 /* responsive font size start */
@@ -47,7 +30,7 @@ $grid-gutter-width: 30px;
 html,
 body {
   font-family: var(--font-family-o);
-  color: var(--color-black);
+  color: var(--color-textBlack);
   scroll-behavior: smooth;
   position: absolute;
   width: 100%;
