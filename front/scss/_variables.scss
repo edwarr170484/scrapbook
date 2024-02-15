@@ -1,0 +1,31 @@
+$colors: (
+  black: #000,
+);
+
+$fonts: (
+  o: "'Open Sans', sans-serif",
+);
+
+$borderRadius: 5px;
+$bigBorderRadius: 71px;
+
+@mixin root() {
+  :root {
+    @each $name, $color in $colors {
+      --color-#{$name}: #{$color};
+    }
+
+    @each $name, $font in $fonts {
+      --font-family-#{$name}: #{$font};
+    }
+
+    --grid-column-gap: #{$grid-gutter-width};
+    --grid-row-gap: #{$grid-gutter-width};
+    --border-radius: #{$borderRadius};
+    --big-border-radius: #{$bigBorderRadius};
+  }
+}
+
+@mixin transition($property) {
+  transition: $property 0.4s cubic-bezier(0.82, -0.32, 0.18, 0.96);
+}

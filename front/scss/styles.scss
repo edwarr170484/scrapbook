@@ -1,0 +1,68 @@
+/* Bootstrap part start */
+// Required
+@import "../../node_modules/bootstrap/scss/functions";
+
+// Default variable overrides
+$grid-gutter-width: 30px;
+
+// Required
+@import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/variables-dark";
+@import "../../node_modules/bootstrap/scss/maps";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/root";
+
+//Optional
+@import "../../node_modules/bootstrap/scss/containers";
+@import "../../node_modules/bootstrap/scss/grid";
+@import "../../node_modules/bootstrap/scss/carousel";
+@import "../../node_modules/bootstrap/scss/modal";
+@import "../../node_modules/bootstrap/scss/forms/form-control";
+/* Bootstrap part end */
+
+/* responsive font size start */
+@import "../../node_modules/rfs/scss";
+/* responsive font size end */
+
+/* import vendor styles start */
+@import "./vendor/normalize.css";
+@import "./vendor/slick.css";
+@import "./vendor/lightbox.min.css";
+/* import vendor styles end */
+
+/* connect fonts start */
+@import "../fonts/fontawesome/faces.min.css";
+@import "../fonts/open_sans/faces.css";
+/* connect fonts end */
+
+@import "./variables";
+@import "./tools/breakpoints";
+
+@include root();
+
+/* root styles start */
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  font-family: var(--font-family-o);
+  color: var(--color-black);
+  scroll-behavior: smooth;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  @media (min-width: 1400px) {
+    max-width: 1350px;
+  }
+
+  @media (max-width: 1350px) {
+    max-width: 100%;
+  }
+}
+/* root styles end */

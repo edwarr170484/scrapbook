@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "bootbox": "^6.0.0",
+    "bootstrap": "^5.3.2",
+    "jquery": "^3.7.1",
+    "rfs": "^10.0.0"
+  },
+  "scripts": {
+    "watch": "sass --watch front/scss/styles.scss:assets/css/styles.css",
+    "build": "npx webpack"
+  },
+  "devDependencies": {
+    "webpack": "^5.90.1",
+    "webpack-cli": "^5.1.4"
+  }
+}

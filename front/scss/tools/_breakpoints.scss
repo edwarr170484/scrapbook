@@ -1,0 +1,22 @@
+$breakpoints: (
+  xs: 0,
+  sm: 575.98px,
+  md: 767.98px,
+  lg: 991.98px,
+  xl: 1199.98px,
+  xxl: 1399.98px
+);
+
+@mixin respond-to($breakpoint){
+    @if map-has-key($breakpoints, $breakpoint){
+        @media (max-width: #{map-get($breakpoints, $breakpoint)}){
+            @content;
+        }
+    }
+}
+
+@mixin respond-h(){
+    @media(min-width: 992px) and (max-height: 567px){
+        @content;
+    }
+}

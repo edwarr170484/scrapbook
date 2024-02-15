@@ -1,0 +1,19 @@
+.list {
+  margin: 0;
+  padding: 0;
+
+  & li {
+    @include font-size(16px);
+    line-height: 16px;
+    color: var(--color-blueText);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 25px;
+
+    &:before {
+      content: "+";
+      font-size: 30px;
+    }
+  }
+}

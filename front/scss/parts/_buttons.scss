@@ -1,0 +1,42 @@
+/* buttons styles start */
+.button {
+  font-family: var(--font-family-m);
+  font-size: 12px;
+  line-height: 1;
+  font-weight: 500;
+  text-transform: uppercase;
+  @extend .flex_center;
+  padding: 30px 38px;
+  border-radius: 0 0 0 calc(var(--border-radius) * 8);
+  border: none;
+  cursor: pointer;
+  @include transition(opacity);
+
+  &_blue {
+    background: var(--color-blueBg);
+    color: var(--color-grayText);
+  }
+
+  &_gray {
+    background: var(--color-grayBg);
+    color: var(--color-blueText);
+    border-color: var(--color-grayBg);
+    @include transition(all);
+  }
+
+  &_framed {
+    background: none !important;
+    border-width: 1px;
+    border-style: solid;
+  }
+
+  &_rounded {
+    border-radius: 30px;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+}
+/* buttons styles end */

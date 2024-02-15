@@ -1,0 +1,51 @@
+.roundabout {
+  display: flex;
+  align-items: stretch;
+  gap: 100px;
+  position: relative;
+
+  & .slider__nav {
+    flex-shrink: 0;
+    &.slider__nav_prev {
+      transform: translateX(-28px);
+
+      @include respond-to(md) {
+        transform: translateX(-62px) !important;
+      }
+    }
+    &.slider__nav_next {
+      transform: translateX(28px);
+    }
+
+    @include respond-to(xxl) {
+      transform: none !important;
+    }
+
+    @include respond-to(md) {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+    }
+  }
+
+  &:before {
+    display: block;
+    content: " ";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 76px;
+    height: 0;
+    border-top: 1px solid #282828;
+
+    @include respond-to(md) {
+      position: relative;
+    }
+  }
+
+  @include respond-to(md) {
+    display: block;
+    position: static;
+  }
+}
