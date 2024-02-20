@@ -7,7 +7,6 @@ $fonts: (
 );
 
 $borderRadius: 5px;
-$bigBorderRadius: 71px;
 
 @mixin root() {
   :root {
@@ -22,7 +21,6 @@ $bigBorderRadius: 71px;
     --grid-column-gap: #{$grid-gutter-width};
     --grid-row-gap: #{$grid-gutter-width};
     --border-radius: #{$borderRadius};
-    --big-border-radius: #{$bigBorderRadius};
   }
 }
 

@@ -11874,7 +11874,13 @@ textarea.form-control-lg {
   --grid-column-gap: 1.5rem;
   --grid-row-gap: 1.5rem;
   --border-radius: 5px;
-  --big-border-radius: 71px;
+}
+
+.list-group-item .badge {
+  line-height: 1.3rem;
+}
+.list-group-item a {
+  text-decoration: none;
 }
 
 /* root styles start */
@@ -11903,6 +11909,10 @@ body {
   .container {
     max-width: 100%;
   }
+}
+
+main > .container {
+  padding: 60px 15px 0;
 }
 
 /* root styles end */

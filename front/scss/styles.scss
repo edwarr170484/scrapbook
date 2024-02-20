@@ -23,6 +23,8 @@
 
 @include root();
 
+@import "./parts/index";
+
 /* root styles start */
 * {
   box-sizing: border-box;
@@ -46,6 +48,12 @@ body {
 
   @media (max-width: 1350px) {
     max-width: 100%;
+  }
+}
+
+main {
+  & > .container {
+    padding: 60px 15px 0;
   }
 }
 /* root styles end */
