@@ -27,7 +27,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse ml-auto flex-grow-0" id="navbarCollapse">
-        <button class="btn btn-outline-success" type="submit" onclick="album.add()">Добавить</button>
+        <button class="btn btn-outline-success" type="submit" onclick="album.add()">Добавить альбом</button>
       </div>
     </div>
   </nav>

@@ -1,4 +1,4 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="albumModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <form method="post" action="/album/edit" id="album-form">
@@ -19,6 +19,27 @@
         <div class="modal-footer">
           <input name="album-id" type="hidden" id="album-id" />
           <button type="button" class="btn btn-secondary" onclick="album.closeModal()">Закрыть</button>
+          <button type="submit" class="btn btn-primary">Сохранить</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <form method="post" action="" id="image-form">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Редактировать изображение</h5>
+          <button type="button" class="btn-close" onclick="albumImage.closeModal()" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          
+        </div>
+        <div class="modal-footer">
+          <input name="image-id" type="hidden" id="image-id" />
+          <button type="button" class="btn btn-secondary" onclick="albumImage.closeModal()">Закрыть</button>
           <button type="submit" class="btn btn-primary">Сохранить</button>
         </div>
       </form>

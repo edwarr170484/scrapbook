@@ -1,0 +1,90 @@
+.javatta {
+  background: none;
+  border: 1px solid rgb(var(--bs-dark-rgb));
+  border-radius: 6px;
+  min-height: 250px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  position: relative;
+}
+
+.javatta input[type="file"] {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.javatta a {
+  color: rgb(var(--bs-dark-rgb));
+  text-decoration: underline;
+}
+
+.javatta .javatta-label {
+  position: relative;
+  z-index: 1;
+}
+
+.javatta .javatta-label span {
+  display: flex;
+  align-items: center;
+}
+
+.javatta .javatta-label span svg {
+  width: 14px;
+  height: 14px;
+}
+
+.javatta .javatta-label span svg:first-child {
+  margin-right: 4px;
+}
+
+.javatta .javatta-label.full {
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.javatta button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.javatta-error {
+  font-size: 12px;
+  color: lightcoral;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  height: 0;
+  transition: height 300ms linear;
+  padding: 8px 0;
+}
+
+.javatta-error.show {
+  height: auto;
+}

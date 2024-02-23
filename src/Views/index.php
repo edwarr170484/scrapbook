@@ -11,9 +11,9 @@
                             <div class="fw-bold">Альбом "<?php echo $album["name"];?>"</div>
                         </a>
                         <p><?php echo $album["tieser"];?></p>
-                        <small class="text-sm text-body-secondary">Обновлен <?php $date = new \DateTime($album["date_updated"]);echo $date->format("d.m.Y");?></small>
+                        <small class="text-sm text-body-secondary">Обновлен <?php echo $album["date_updated"]->format("d.m.Y");?></small>
                     </div>
-                    <span class="badge bg-primary rounded-pill">Фотографий: 0</span>
+                    <span class="badge bg-primary rounded-pill">Фотографий: <?php echo count($album["images"]);?></span>
                     <div class="btn-group position-absolute">
                       <button type="button" class="btn btn-sm btn-outline-secondary" title="Редактировать" onclick="album.edit(<?php echo $album['id'];?>)"><i class="fas fa-edit"></i></button>
                       <button type="button" class="btn btn-sm btn-outline-secondary" title="Удалить" onclick="album.delete(<?php echo $album['id'];?>)"><i class="fas fa-trash-alt"></i></button>
