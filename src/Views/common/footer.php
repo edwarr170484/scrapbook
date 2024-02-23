@@ -1,6 +1,6 @@
     <footer class="footer mt-auto py-3 bg-body-tertiary">
       <div class="container">
-        <span class="text-body-secondary">Place sticky footer content here.</span>
+        <span class="text-body-secondary">&copy; Тестовое задание</span>
       </div>
     </footer>
     <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
@@ -14,6 +14,7 @@
         Hello, world! This is a toast message.
       </div>
     </div>
+    <?php include(__DIR__ . "/modals.php");?>
     <script src="./assets/js/custom.js"></script>
 </body>
 </html>

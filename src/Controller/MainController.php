@@ -8,12 +8,14 @@ use Scrapbook\Model\Album;
 
 class MainController extends Controller
 {
+    public function __construct() 
+    {
+        parent::__construct();
+        $this->loadModel(Album::class);
+    }
+
     public function index(Request $request)
     {
-        $album = new Album();
-
-        $albums = $album->findAll();
-
-        return $this->render("index.php", ["header" => "Мои альбомы", "albums" => $albums]);
+        return $this->render("index.php", ["title" => "Главная страница", "header" => "Мои альбомы", "albums" => $this->model->album->findAll()]);
     }
 }
