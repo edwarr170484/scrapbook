@@ -7,6 +7,7 @@ window.albumImage = new AlbumImage("#imageModal");
 
 document.addEventListener("DOMContentLoaded", (event) => {
   new Javatta(document.getElementById("attachment"), {
+    maxFilesNumber: 100,
     disallowTypes: ["exe", "bat", "js", "vbs", "com", "sh", "ps", "mth"],
   });
 });

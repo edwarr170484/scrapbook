@@ -25,4 +25,10 @@ $routes = [
         "controller" => "AlbumController",
         "handler"    => "delete"
     ],
+    [
+        "method"     => "post",
+        "uri"        => "/album/images/add",
+        "controller" => "ImageController",
+        "handler"    => "add"
+    ],
 ];

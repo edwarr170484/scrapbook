@@ -6,9 +6,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
@@ -25,7 +25,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 45px);
   z-index: 2;
   cursor: pointer;
 }
@@ -38,11 +38,36 @@
 .javatta .javatta-label {
   position: relative;
   z-index: 1;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 .javatta .javatta-label span {
   display: flex;
   align-items: center;
+  width: 110px;
+  height: 110px;
+  position: relative;
+  border-radius: 6px;
+}
+.javatta .javatta-label span:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 6px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.javatta .javatta-label span img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 6px;
 }
 
 .javatta .javatta-label span svg {
@@ -50,18 +75,20 @@
   height: 14px;
 }
 
-.javatta .javatta-label span svg:first-child {
-  margin-right: 4px;
-}
-
 .javatta .javatta-label.full {
   z-index: 4;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  gap: 5px;
+  width: 100%;
+  height: 100%;
+  padding-left: 8px;
+  padding-right: 8px;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-bottom: 45px;
 }
 
-.javatta button {
+.javatta .javatta-label button {
   background: none;
   border: none;
   padding: 0;
@@ -71,8 +98,17 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  z-index: 2;
 }
-
+.javatta button#send-images {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translate(-50%);
+}
 .javatta-error {
   font-size: 12px;
   color: lightcoral;

@@ -9,7 +9,7 @@ class Album extends Model
     public function __construct()
     {
         parent::__construct();
-        $this->table = "album a";
+        $this->table = "album";
     }
 
     public function findAll()
@@ -17,7 +17,7 @@ class Album extends Model
         $image = new Image();
         $albums = [];
 
-        $results = $this->manager->query("SELECT a.id as id, a.name as name, a.tieser as tieser, a.date_created as date_created, a.date_updated as date_updated, i.id as image_id, i.album_id as image_album, i.caption as image_caption, i.path as image_path, i.likes as image_likes, i.dislikes as image_dislikes, i.date_added as image_date FROM $this->table LEFT JOIN $image->table ON (i.album_id = a.id)");
+        $results = $this->manager->query("SELECT a.id as id, a.name as name, a.tieser as tieser, a.date_created as date_created, a.date_updated as date_updated, i.id as image_id, i.album_id as image_album, i.caption as image_caption, i.path as image_path, i.likes as image_likes, i.dislikes as image_dislikes, i.date_added as image_date FROM $this->table a LEFT JOIN $image->table i ON (i.album_id = a.id)");
 
         if(count($results) > 0)
         {
@@ -32,7 +32,7 @@ class Album extends Model
         $image = new Image();
         $albums = [];
 
-        $results = $this->manager->prepared("SELECT a.id as id, a.name as name, a.tieser as tieser, a.date_created as date_created, a.date_updated as date_updated, i.id as image_id, i.album_id as image_album, i.caption as image_caption, i.path as image_path, i.likes as image_likes, i.dislikes as image_dislikes, i.date_added as image_date FROM $this->table LEFT JOIN $image->table ON (i.album_id = a.id) WHERE a.id=?", [intval($id)]);
+        $results = $this->manager->prepared("SELECT a.id as id, a.name as name, a.tieser as tieser, a.date_created as date_created, a.date_updated as date_updated, i.id as image_id, i.album_id as image_album, i.caption as image_caption, i.path as image_path, i.likes as image_likes, i.dislikes as image_dislikes, i.date_added as image_date FROM $this->table a LEFT JOIN $image->table i ON (i.album_id = a.id) WHERE a.id=?", [intval($id)]);
 
         if(count($results) > 0)
         {

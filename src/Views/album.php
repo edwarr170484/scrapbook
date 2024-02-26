@@ -5,8 +5,9 @@
         <div class="container">
           <h1 class="jumbotron-heading"><?php echo $album["name"];?></h1>
           <p class="lead text-muted"><?php echo $album["tieser"];?></p>
-          <form action="" method="POST" enctype="multipart/form-data">
-              <input name="attachment[]" type="file" id="attachment" multiple />
+          <form action="/album/images/add" method="POST" enctype="multipart/form-data">
+              <input name="image[]" type="file" id="attachment" multiple />
+              <input name="album-id" type="hidden" value="<?php echo $album["id"];?>">
           </form>
         </div>
     </section>

@@ -9,11 +9,16 @@ class Image extends Model
     public function __construct()
     {
         parent::__construct();
-        $this->table = "images i";
+        $this->table = "images";
     }
 
     public function findByAlbumId($albumId)
     {
         return $this->manager->prepared("SELECT * FROM $this->table WHERE album_id=?", [intval($albumId)]);
+    }
+
+    public function add($values)
+    {
+        return $this->manager->prepared("INSERT INTO $this->table (album_id, caption, path) values (?, ?, ?)", $values);
     }
 }

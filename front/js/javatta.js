@@ -163,32 +163,53 @@ class Javatta {
     if (this.uploads.files.length > 0) {
       for (let i = 0; i < this.uploads.files.length; i++) {
         const file = this.uploads.files[i];
-        const icons = this.createIcons();
+        const reader = new FileReader();
 
-        let fileLabel = document.createElement("span");
-        let fileName = document.createTextNode(file.name);
-        let fileRemoveButton = document.createElement("button");
+        reader.readAsDataURL(file);
+        reader.onload = (e) => {
+          const icons = this.createIcons();
+          let fileLabel = document.createElement("span");
+          let preview = new Image();
+          preview.src = e.target.result;
+          fileLabel.appendChild(preview);
 
-        fileRemoveButton.setAttribute("type", "button");
-        fileRemoveButton.appendChild(icons.removeIcon);
+          let fileRemoveButton = document.createElement("button");
 
-        fileRemoveButton.addEventListener("click", () => {
-          if (confirm("Хотите удалить изображение?")) {
-            this.removeFileFromFileList(i);
-            this.render();
-          }
-        });
+          fileRemoveButton.setAttribute("type", "button");
+          fileRemoveButton.appendChild(icons.removeIcon);
 
-        fileLabel.appendChild(icons.attachIcon);
-        fileLabel.appendChild(fileName);
-        fileLabel.appendChild(fileRemoveButton);
+          fileRemoveButton.addEventListener("click", () => {
+            if (confirm("Хотите удалить изображение?")) {
+              this.removeFileFromFileList(i);
+              this.render();
+            }
+          });
 
-        this.template.label.appendChild(fileLabel);
+          fileLabel.appendChild(fileRemoveButton);
+          this.template.label.appendChild(fileLabel);
+        };
       }
 
       this.element.files = this.uploads.files;
       this.template.label.classList.add("full");
+
+      let submitButton = document.getElementById("send-images");
+
+      if (!submitButton) {
+        submitButton = document.createElement("button");
+        submitButton.id = "send-images";
+        submitButton.classList.add("btn");
+        submitButton.classList.add("btn-primary");
+        submitButton.innerHTML = "Отправить";
+        this.template.container.appendChild(submitButton);
+      }
     } else {
+      let submitButton = document.getElementById("send-images");
+
+      if (submitButton) {
+        submitButton.remove();
+      }
+
       this.template.label.classList.remove("full");
       this.template.label.innerHTML = `Перетащите сюда изображения или <a href="javascript:void(0)">кликните для загрузки</a>`;
     }
