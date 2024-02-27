@@ -3,6 +3,7 @@ namespace Scrapbook\Controller;
 
 use Scrapbook\Core\Request;
 use Scrapbook\Core\Controller;
+use Scrapbook\Core\Application;
 
 use Scrapbook\Model\Album;
 
@@ -59,7 +60,7 @@ class AlbumController extends Controller
         {
             try
             {
-                $result = $this->model->album->delete($request->post("id"));
+                $result = $this->model->album->delete($request->post("id"), Application::$config->root);
 
                 return $this->json(['message' => 'Альбом успешно удален', 'error' => 0]);
             }

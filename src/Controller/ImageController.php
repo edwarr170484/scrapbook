@@ -15,6 +15,13 @@ class ImageController extends Controller
         $this->loadModel(Image::class);
     }
 
+    public function single(Request $request)
+    {
+        $single = $this->model->image->find($request->get("id"));
+
+        return $this->json($single);
+    }
+
     public function add(Request $request)
     {
         if($request->server("REQUEST_METHOD") == "POST")
@@ -39,5 +46,41 @@ class ImageController extends Controller
         }
 
         $this->redirect("/");
+    }
+
+    public function edit(Request $request)
+    {
+        if($request->server("REQUEST_METHOD") == "POST")
+        {
+            $caption = $request->post("image-caption");
+            $description = $request->post("image-description") ? $request->post("image-description") : "";
+
+            if($request->post("image-id"))
+            {
+                $id = $request->post("image-id");
+                $result = $this->model->image->edit([$caption, $description, $id]);
+            }
+
+            $this->redirect($request->post("redirect"));
+        }
+    }
+
+    public function delete(Request $request)
+    {
+        if($request->server("REQUEST_METHOD") == "POST")
+        {
+            try
+            {
+                $result = $this->model->image->delete($request->post("id"), Application::$config->root);
+
+                return $this->json(['message' => 'Изображение успешно удалено', 'error' => 0]);
+            }
+            catch(\Throwable $e)
+            {
+                return $this->json(['message' => $e->getMessage(), 'error' => 1]);
+            }
+        }
+
+        return $this->json(['message' => '', 'error' => 1]);
     }
 }

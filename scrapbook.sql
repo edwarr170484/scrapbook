@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2024 at 12:21 PM
+-- Generation Time: Feb 27, 2024 at 12:50 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.2.4
 
@@ -66,29 +66,14 @@ CREATE TABLE `comment` (
 CREATE TABLE `images` (
   `id` int(15) NOT NULL,
   `album_id` int(15) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `caption` text DEFAULT NULL,
+  `description` text DEFAULT NULL,
   `path` varchar(512) NOT NULL,
   `likes` int(15) DEFAULT 0,
   `dislikes` int(15) DEFAULT 0,
   `date_added` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `images`
---
-
-INSERT INTO `images` (`id`, `album_id`, `caption`, `path`, `likes`, `dislikes`, `date_added`) VALUES
-(1, 1, 'Это мы на фоне', '/uploads/images/image-1.jpg', 10, 3, '2024-02-23 14:28:23'),
-(2, 1, 'Классная картинка', '/uploads/images/image-2.jpg', 2, 2, '2024-02-23 14:31:26'),
-(3, 1, 'content-1.jpg', '/uploads/images/content-1.jpg', 0, 0, '2024-02-26 14:19:08'),
-(4, 1, 'call-banner.jpg', '/uploads/images/call-banner.jpg', 0, 0, '2024-02-26 14:19:23'),
-(5, 1, 'main-banner.jpg', '/uploads/images/main-banner.jpg', 0, 0, '2024-02-26 14:19:23'),
-(6, 1, 'testimonials.jpg', '/uploads/images/testimonials.jpg', 0, 0, '2024-02-26 14:19:23'),
-(7, 2, 'blog-01.jpg', '/uploads/images/blog-01.jpg', 0, 0, '2024-02-26 14:20:11'),
-(8, 2, 'blog-02.jpg', '/uploads/images/blog-02.jpg', 0, 0, '2024-02-26 14:20:11'),
-(9, 2, 'contact-form-04.png', '/uploads/images/contact-form-04.png', 0, 0, '2024-02-26 14:20:11'),
-(10, 2, 'features_block.png', '/uploads/images/features_block.png', 0, 0, '2024-02-26 14:20:11'),
-(11, 2, 'footer-05-brochure.jpg', '/uploads/images/footer-05-brochure.jpg', 0, 0, '2024-02-26 14:20:11');
 
 --
 -- Indexes for dumped tables
@@ -105,14 +90,14 @@ ALTER TABLE `album`
 --
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `image_id` (`image_id`);
+  ADD KEY `FK_comment_1` (`image_id`);
 
 --
 -- Indexes for table `images`
 --
 ALTER TABLE `images`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `album_id` (`album_id`);
+  ADD KEY `FK_images_1` (`album_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -128,7 +113,7 @@ ALTER TABLE `album`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `images`
@@ -144,13 +129,13 @@ ALTER TABLE `images`
 -- Constraints for table `comment`
 --
 ALTER TABLE `comment`
-  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`image_id`) REFERENCES `images` (`id`);
+  ADD CONSTRAINT `FK_comment_1` FOREIGN KEY (`image_id`) REFERENCES `images` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `images`
 --
 ALTER TABLE `images`
-  ADD CONSTRAINT `images_ibfk_1` FOREIGN KEY (`album_id`) REFERENCES `album` (`id`);
+  ADD CONSTRAINT `FK_images_1` FOREIGN KEY (`album_id`) REFERENCES `album` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -10,4 +10,9 @@ class Comment extends Model
         parent::__construct();
         $this->table = "comment";
     }
+
+    public function add($values)
+    {
+        return $this->manager->prepared("INSERT INTO $this->table (image_id, text, name) values (?, ?, ?)", $values);
+    }
 }

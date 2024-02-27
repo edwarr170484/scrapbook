@@ -29,20 +29,50 @@
 <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <form method="post" action="" id="image-form">
+      <form method="post" action="/album/images/edit" id="image-form">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Редактировать изображение</h5>
           <button type="button" class="btn-close" onclick="albumImage.closeModal()" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          
+          <div class="mb-3">
+              <label for="image-caption" class="form-label">Название изображения</label>
+              <input name="image-caption" type="text" class="form-control" id="image-caption" required>
+          </div>
+          <div>
+              <label for="image-description" class="form-label">Описание изображения</label>
+              <textarea name="image-description" class="form-control" id="image-description"></textarea>
+          </div>
         </div>
         <div class="modal-footer">
           <input name="image-id" type="hidden" id="image-id" />
+          <input name="redirect" type="hidden" id="redirect" />
           <button type="button" class="btn btn-secondary" onclick="albumImage.closeModal()">Закрыть</button>
           <button type="submit" class="btn btn-primary">Сохранить</button>
         </div>
       </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="singleImageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row align-items-stretch">
+              <div class="col-12 col-lg-6" id="image-preview"></div>
+              <div class="col-12 col-lg-6 position-relative">
+                <div id="image-info" class="d-flex flex-column h-100"></div>
+                <div class="comment-form p-3">
+                  <input name="comment-author" id="comment-author" class="form-control form-control-sm mb-1" type="text" placeholder="Имя" />
+                  <textarea name="comment-text" id="comment-author" class="form-control form-control-sm mb-1" placeholder="Комментарий"></textarea>
+                  <button class="btn btn-sm btn-primary" type="button">Добавить комментарий</button>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
     </div>
   </div>
 </div>
