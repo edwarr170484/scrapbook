@@ -62,12 +62,15 @@
           <div class="container-fluid">
             <div class="row align-items-stretch">
               <div class="col-12 col-lg-6" id="image-preview"></div>
-              <div class="col-12 col-lg-6 position-relative">
-                <div id="image-info" class="d-flex flex-column h-100"></div>
-                <div class="comment-form p-3">
-                  <input name="comment-author" id="comment-author" class="form-control form-control-sm mb-1" type="text" placeholder="Имя" />
-                  <textarea name="comment-text" id="comment-author" class="form-control form-control-sm mb-1" placeholder="Комментарий"></textarea>
-                  <button class="btn btn-sm btn-primary" type="button">Добавить комментарий</button>
+              <div class="col-12 col-lg-6 position-relative d-flex flex-column">
+                <div id="image-info" class="d-flex flex-column flex-grow-1"></div>
+                <div class="comment-form p-3 mt-auto">
+                  <form action="" id="comment-form">
+                    <input name="comment-author" id="comment-name" class="form-control form-control-sm mb-1" type="text" placeholder="Имя" required />
+                    <textarea name="comment-text" id="comment-text" class="form-control form-control-sm mb-1" placeholder="Комментарий" required></textarea>
+                    <input name="comment-image" id="comment-image" type="hidden" />
+                    <button class="btn btn-sm btn-primary" type="button" onclick="comment.add()">Добавить комментарий</button>
+                  </form>
                 </div>
               </div>
             </div>

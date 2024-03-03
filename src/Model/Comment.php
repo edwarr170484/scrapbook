@@ -15,4 +15,9 @@ class Comment extends Model
     {
         return $this->manager->prepared("INSERT INTO $this->table (image_id, text, name) values (?, ?, ?)", $values);
     }
+    public function delete($id)
+    {
+        return $this->manager->prepared("DELETE FROM $this->table WHERE id=?", [intval($id)]);
+        
+    }
 }

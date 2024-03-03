@@ -55,8 +55,20 @@ class Album extends Model
         return $this->manager->prepared("UPDATE $this->table SET name=?, tieser=?, date_updated=current_timestamp() WHERE id=?", $values);
     }
 
-    public function delete($id)
+    public function delete($id, $rootDir)
     {
+        $image = new Image();
+
+        $images = $image->findByAlbumId($id);
+
+        if(count($images) > 0)
+        {
+            foreach($images as $albumImage)
+            {
+                $image->delete($albumImage["id"], $rootDir);
+            }
+        }
+
         return $this->manager->prepared("DELETE FROM $this->table WHERE id=?", [intval($id)]);
     }
 

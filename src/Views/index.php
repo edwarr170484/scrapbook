@@ -21,6 +21,9 @@
                 </li>
             <?php }?>
         </ol>
+    <?php }else{?>
+      <p class="lead">Альбомов пока нет.</p>
+      <button class="btn btn-outline-success" type="submit" onclick="album.add()">Добавить альбом</button>
     <?php }?>
   </div>
 </main>

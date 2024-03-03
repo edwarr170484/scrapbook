@@ -49,4 +49,16 @@ $routes = [
         "controller" => "ImageController",
         "handler"    => "delete"
     ],
+    [
+        "method"     => "post",
+        "uri"        => "/album/images/rate",
+        "controller" => "ImageController",
+        "handler"    => "rate"
+    ],
+    [
+        "method"     => "post",
+        "uri"        => "/comment/add",
+        "controller" => "CommentController",
+        "handler"    => "add"
+    ],
 ];

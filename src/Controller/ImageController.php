@@ -65,6 +65,24 @@ class ImageController extends Controller
         }
     }
 
+    public function rate(Request $request)
+    {
+        if($request->server("REQUEST_METHOD") == "POST")
+        {
+            $type = $request->post("rate-type");
+            $image = $request->post("rate-image");
+
+            $table = $this->model->image->getTableName();
+
+            $this->model->image->sql("UPDATE $table SET $type='$value' WHERE id=$image");
+            $single = $this->model->image->find($image);
+
+            return $this->json($single);
+        }
+
+        return $this->json([]);
+    }
+
     public function delete(Request $request)
     {
         if($request->server("REQUEST_METHOD") == "POST")

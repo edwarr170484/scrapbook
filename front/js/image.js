@@ -20,11 +20,11 @@ class AlbumImage {
 
       let comments = ``;
 
-      if (result.result.comments) {
+      if (result.result.comments.length > 0) {
         result.result.comments.forEach((comment) => {
           comments += `<div class="list-group-item list-group-item-action py-3 lh-sm">
                         <div class="d-flex w-100 justify-content-between">
-                          <h5 class="mb-1">${comment.name}</h5>
+                          <h5 class="mb-1 text-sm">${comment.name}</h5>
                           <small>${comment.date_added}</small>
                         </div>
                         <p class="mb-1">${comment.text}</p>
@@ -34,11 +34,12 @@ class AlbumImage {
         comments = `Комментариев пока нет`;
       }
 
-      const imageInfo = `<h2>${result.result.caption}</h2>
-                         <small><i>${result.result.description}</i></small>
-                         <div class="image-comments list-group list-group-flush border-bottom flex-grow-1">${comments}</div>`;
+      const imageInfo = `<div><h2>${result.result.caption}</h2>
+                         <small><i>${result.result.description}</i></small></div>
+                         <div class="image-comments list-group list-group-flush flex-grow-1" id="image-comments">${comments}</div>`;
 
       document.querySelector("#image-info").innerHTML = imageInfo;
+      document.querySelector("#comment-image").value = id;
 
       this.singleModal.show();
     }
@@ -60,7 +61,17 @@ class AlbumImage {
     }
   }
 
-  rate(id, type) {}
+  async rate(imageId, type) {
+    let formData = new FormData();
+    formData.append('rate-type', type);
+    formData.append('rate-image', imageId);
+
+    let result = await request("post", `/album/images/rate`, formData);
+
+    if (result.response.ok && result.result) {
+
+    }
+  }
 
   async delete(id) {
     if (

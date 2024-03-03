@@ -17,3 +17,10 @@
 .jumbotron-heading {
   font-weight: 300;
 }
+
+.card-img-top {
+  height: 225px;
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}

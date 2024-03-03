@@ -19,7 +19,7 @@
               <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
                   <a href="#" onclick="albumImage.single(<?php echo $image['id'];?>)">
-                    <img class="card-img-top" data-src="" src="<?php echo $image["path"];?>" data-holder-rendered="true" style="height: 225px; width: 100%; display: block;">
+                    <img class="card-img-top" data-src="" src="<?php echo $image["path"];?>" data-holder-rendered="true">
                   </a>
                   <div class="card-body">
                     <p class="card-text mb-2"><?php echo $image["caption"];?></p>
