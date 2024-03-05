@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 27, 2024 at 12:50 PM
+-- Generation Time: Mar 05, 2024 at 11:00 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.2.4
 
@@ -35,14 +35,6 @@ CREATE TABLE `album` (
   `date_updated` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `album`
---
-
-INSERT INTO `album` (`id`, `name`, `tieser`, `date_created`, `date_updated`) VALUES
-(1, 'Поездка 2024', 'Классно сгоняли на концерт Глызина', '2024-02-16 15:30:37', '2024-02-16 15:31:05'),
-(2, 'Поход 2022', 'Поход за пивом удался на славу!!!!', '2024-02-16 15:30:37', '2024-02-22 17:33:36');
-
 -- --------------------------------------------------------
 
 --
@@ -70,8 +62,8 @@ CREATE TABLE `images` (
   `caption` text DEFAULT NULL,
   `description` text DEFAULT NULL,
   `path` varchar(512) NOT NULL,
-  `likes` int(15) DEFAULT 0,
-  `dislikes` int(15) DEFAULT 0,
+  `likes` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
+  `dislikes` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `date_added` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -119,7 +111,7 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
@@ -129,13 +121,18 @@ ALTER TABLE `images`
 -- Constraints for table `comment`
 --
 ALTER TABLE `comment`
-  ADD CONSTRAINT `FK_comment_1` FOREIGN KEY (`image_id`) REFERENCES `images` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `FK_comment_1` FOREIGN KEY (`image_id`) REFERENCES `images` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`image_id`) REFERENCES `images` (`id`),
+  ADD CONSTRAINT `comment_ibfk_2` FOREIGN KEY (`image_id`) REFERENCES `images` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `comment_ibfk_3` FOREIGN KEY (`image_id`) REFERENCES `images` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `images`
 --
 ALTER TABLE `images`
-  ADD CONSTRAINT `FK_images_1` FOREIGN KEY (`album_id`) REFERENCES `album` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `FK_images_1` FOREIGN KEY (`album_id`) REFERENCES `album` (`id`),
+  ADD CONSTRAINT `images_ibfk_1` FOREIGN KEY (`album_id`) REFERENCES `album` (`id`),
+  ADD CONSTRAINT `images_ibfk_2` FOREIGN KEY (`album_id`) REFERENCES `album` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

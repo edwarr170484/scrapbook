@@ -25,7 +25,7 @@
                     <p class="card-text mb-2"><?php echo $image["caption"];?></p>
                     <div class="d-flex justify-content-between align-items-center mb-3">
                       <i>Комментариев: <?php echo $image["comments"];?></i>
-                      <div class="btn-group btn-group-sm" role="group" id="rate-buttons-<?php echo $image['id'];?>">
+                      <div class="btn-group btn-group-sm rate-buttons-<?php echo $image['id'];?>" role="group">
                         <button type="button" class="btn btn-danger" onclick="albumImage.rate(<?php echo $image['id'];?>, 'dislikes')"><i class="far fa-thumbs-down"></i> <?php echo $image["dislikesCount"];?></button>
                         <button type="button" class="btn btn-success" onclick="albumImage.rate(<?php echo $image['id'];?>, 'likes')"><i class="far fa-thumbs-up"></i> <?php echo $image["likesCount"];?></button>
                       </div>

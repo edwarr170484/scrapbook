@@ -13,7 +13,7 @@ class AlbumImage {
     if (result.response.ok && result.result) {
       document.querySelector("#image-preview").innerHTML = `
         <img src="${result.result.path}" alt="${result.result.caption}" title="${result.result.caption}" />
-        <div class="btn-group btn-group-sm" role="group" id="rate-buttons-${id}">
+        <div class="btn-group btn-group-sm rate-buttons-${id}" role="group">
           <button type="button" class="btn btn-danger" onclick="albumImage.rate(${id}, 'dislikes')"><i class="far fa-thumbs-down"></i> ${result.result.dislikesCount}</button>
           <button type="button" class="btn btn-success" onclick="albumImage.rate(${id}, 'likes')"><i class="far fa-thumbs-up"></i> ${result.result.likesCount}</button>
         </div>`;
@@ -69,9 +69,14 @@ class AlbumImage {
     let result = await request("post", `/album/images/rate`, formData);
 
     if (result.response.ok && result.result) {
-      let buttons = document.getElementById(`rate-buttons-${imageId}`);
-      buttons.innerHTML = `<button type="button" class="btn btn-danger" onclick="albumImage.rate(${result.result.id}, 'dislikes')"><i class="far fa-thumbs-down"></i> ${result.result.dislikesCount}</button>
+      let buttons = document.querySelectorAll(`.rate-buttons-${imageId}`);
+
+      if (buttons) {
+        [...buttons].forEach((button) => {
+          button.innerHTML = `<button type="button" class="btn btn-danger" onclick="albumImage.rate(${result.result.id}, 'dislikes')"><i class="far fa-thumbs-down"></i> ${result.result.dislikesCount}</button>
       <button type="button" class="btn btn-success" onclick="albumImage.rate(${result.result.id}, 'likes')"><i class="far fa-thumbs-up"></i> ${result.result.likesCount}</button>`;
+        });
+      }
     }
   }
 
