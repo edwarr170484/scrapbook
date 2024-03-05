@@ -71,13 +71,35 @@ class ImageController extends Controller
         {
             $type = $request->post("rate-type");
             $image = $request->post("rate-image");
+            $remoteAddr = $request->server("REMOTE_ADDR");
 
-            $table = $this->model->image->getTableName();
-
-            $this->model->image->sql("UPDATE $table SET $type='$value' WHERE id=$image");
             $single = $this->model->image->find($image);
 
-            return $this->json($single);
+            if($single)
+            {
+                switch($type)
+                {
+                    case 'likes':
+                        $single["likes"][$remoteAddr] = isset($single["likes"][$remoteAddr]) && $single["likes"][$remoteAddr] == 1 ? 0 : 1;
+                        $single["dislikes"][$remoteAddr] = 0;
+                    break;
+
+                    case 'dislikes':
+                        $single["likes"][$remoteAddr] = 0;
+                        $single["dislikes"][$remoteAddr] = isset($single["dislikes"][$remoteAddr]) && $single["dislikes"][$remoteAddr] == 1 ? 0 : 1;
+                    break;
+                }
+
+                $likes = json_encode($single["likes"]);
+                $dislikes = json_encode($single["dislikes"]);
+
+                $table = $this->model->image->getTableName();
+
+                $this->model->image->sql("UPDATE $table SET likes='$likes', dislikes='$dislikes' WHERE id=$image");
+                $single = $this->model->image->find($image);
+    
+                return $this->json($single);
+            }
         }
 
         return $this->json([]);

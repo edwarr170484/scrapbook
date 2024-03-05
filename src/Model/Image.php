@@ -62,7 +62,7 @@ class Image extends Model
     private function process($results)
     {
         $images = [];
-
+        
         foreach($results as $result)
         {
             $dateAdded = new \DateTime($result["date_added"]);
@@ -70,14 +70,19 @@ class Image extends Model
 
             if(!array_key_exists($result["id"], $images))
             {
+                $likes = $result["likes"] ? json_decode($result["likes"], true) : [];
+                $dislikes = $result["dislikes"] ? json_decode($result["dislikes"], true) : [];
+
                 $images[$result["id"]] = [
                     "id"     => $result["id"],
                     "album_id"   => $result["album_id"],
                     "caption" => $result["caption"],
                     "description" => $result["description"],
                     "path" => $result["path"],
-                    "likes" => $result["likes"],
-                    "dislikes" => $result["dislikes"],
+                    "likes" => $likes,
+                    "dislikes" => $dislikes,
+                    "likesCount" => array_reduce($likes, function($l, $v){if($v == 1){$l += 1;}return $l;}, 0),
+                    "dislikesCount" => array_reduce($dislikes, function($l, $v){if($v == 1){$l += 1;}return $l;}, 0),
                     "date_added" => $dateAdded,
                     "comments" => []
                 ];

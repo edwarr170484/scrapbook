@@ -96,13 +96,18 @@ class Album extends Model
             
             if($result["image_id"])
             {
+                $likes = $result["image_likes"] ? json_decode($result["image_likes"], true) : [];
+                $dislikes = $result["image_dislikes"] ? json_decode($result["image_dislikes"], true) : [];
+
                 $albums[$result["id"]]["images"][] = [
                     "id"       => $result["image_id"],
                     "album_id" => $result["image_album"],
                     "caption"  => $result["image_caption"],
                     "path"     => $result["image_path"],
-                    "likes"    => $result["image_likes"],
-                    "dislikes" => $result["image_dislikes"],
+                    "likes"    => $likes,
+                    "dislikes" => $dislikes,
+                    "likesCount" => array_reduce($likes, function($l, $v){if($v == 1){$l += 1;}return $l;}, 0),
+                    "dislikesCount" => array_reduce($dislikes, function($l, $v){if($v == 1){$l += 1;}return $l;}, 0),
                     "date_added" => $imageDate,
                     "comments" => $result["comments"]
                 ];

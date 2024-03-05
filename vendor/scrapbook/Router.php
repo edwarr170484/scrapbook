@@ -28,7 +28,7 @@ class Router
 
             $response = $controller->$action($request);
 
-            return $controller->$action($request);
+            return $response;
         }
         catch(\Throwable $e)
         {
